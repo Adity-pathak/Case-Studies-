@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Take care, man. — A brand case study on The Man Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F5F2;
+    --ink:#16191C;
+    --slate:#5C6469;
+    --line:#DDDAD3;
+    --green:#1F4436;
+    --tint:#E9EEEA;
+    --measure:660px;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{-webkit-text-size-adjust:100%;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:19px;
+    line-height:1.68;
+    font-weight:350;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:var(--measure);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- utility type ---------- */
+  .label{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin:0;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    padding:72px 0 44px;
+    border-bottom:1px solid var(--line);
+  }
+  .masthead .label{margin-bottom:34px;}
+
+  .masthead h1{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-weight:800;
+    font-size:clamp(38px,8vw,62px);
+    line-height:.98;
+    letter-spacing:-.015em;
+    text-transform:uppercase;
+    margin:0 0 22px;
+  }
+
+  .deck{
+    font-size:21px;
+    line-height:1.5;
+    color:var(--slate);
+    margin:0 0 32px;
+    max-width:30em;
+  }
+
+  .byline{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:13px;
+    color:var(--slate);
+    margin:0;
+  }
+  .byline strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- at a glance ---------- */
+  .glance{
+    padding:44px 0 8px;
+  }
+  .glance-grid{
+    border-top:2px solid var(--ink);
+    margin-top:20px;
+  }
+  .glance-row{
+    display:grid;
+    grid-template-columns:104px 1fr;
+    gap:22px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .glance-row p{margin:0;}
+  .glance-row .label{padding-top:5px;}
+  .glance-row .g-text{
+    font-size:18px;
+    line-height:1.55;
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:52px 0;}
+  section + section{border-top:1px solid var(--line);}
+
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:26px;
+  }
+  .num{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.1em;
+    color:var(--green);
+    flex:none;
+    padding-top:2px;
+  }
+  h2{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-weight:700;
+    font-size:clamp(21px,4vw,25px);
+    line-height:1.2;
+    letter-spacing:-.005em;
+    margin:0;
+  }
+
+  h3{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.02em;
+    margin:38px 0 12px;
+  }
+
+  p{margin:0 0 20px;}
+  p:last-child{margin-bottom:0;}
+
+  em{font-style:italic;}
+
+  .lead{font-size:21px;line-height:1.6;}
+
+  .callout{
+    font-size:23px;
+    line-height:1.45;
+    font-weight:400;
+    margin:34px 0;
+    padding-left:20px;
+    border-left:2px solid var(--green);
+  }
+
+  .note{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--slate);
+  }
+
+  /* ---------- tables ---------- */
+  .t-wrap{margin:30px 0;overflow-x:auto;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:16px;
+    line-height:1.5;
+  }
+  th{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+    text-align:left;
+    padding:0 18px 10px 0;
+    border-bottom:2px solid var(--ink);
+    vertical-align:bottom;
+  }
+  td{
+    padding:15px 18px 15px 0;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  td:last-child,th:last-child{padding-right:0;}
+  .t-name{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  /* shift table */
+  .shift td{font-size:17px;}
+  .shift .from{color:var(--slate);width:48%;}
+  .shift .to{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-weight:600;
+    font-size:16px;
+  }
+  .shift tr:last-child td{
+    border-bottom:none;
+    padding-top:20px;
+    font-size:19px;
+  }
+  .shift tr:last-child .to{
+    color:var(--green);
+    font-weight:700;
+    font-size:19px;
+  }
+  .shift tr:nth-last-child(2) td{border-bottom:1px solid var(--ink);}
+
+  /* ---------- figures ---------- */
+  figure{
+    margin:36px 0;
+    padding:28px 24px 20px;
+    background:var(--tint);
+  }
+  figure svg{display:block;width:100%;height:auto;}
+  figcaption{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:12px;
+    line-height:1.5;
+    color:var(--green);
+    margin-top:18px;
+    text-align:center;
+  }
+
+  /* ---------- big idea ---------- */
+  .idea{
+    background:var(--green);
+    color:var(--paper);
+    padding:64px 0 60px;
+    margin-top:0;
+    border-top:none;
+  }
+  .idea .num{color:rgba(246,245,242,.55);}
+  .idea h2{color:var(--paper);}
+  .idea p{color:rgba(246,245,242,.86);}
+  .idea .big{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:clamp(34px,7.5vw,54px);
+    line-height:1;
+    letter-spacing:-.01em;
+    color:var(--paper);
+    margin:36px 0 34px;
+  }
+  .idea h3{color:var(--paper);}
+
+  /* ---------- signoff ---------- */
+  .signoff{
+    padding:54px 0 90px;
+  }
+  .signoff .rule{
+    width:52px;height:2px;background:var(--ink);
+    margin-bottom:26px;
+  }
+  .signoff p{font-size:18px;}
+  .signoff .name{
+    font-family:"Archivo",system-ui,sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    margin-top:26px;
+  }
+  .signoff .name span{display:block;font-weight:400;color:var(--slate);}
+
+  /* ---------- motion ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .reveal.in{opacity:1;transform:none;}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:620px){
+    body{font-size:18px;}
+    .glance-row{grid-template-columns:1fr;gap:8px;}
+    .glance-row .label{padding-top:0;}
+    .t-name{white-space:normal;}
+    table{font-size:15px;}
+    .shift .from,.shift .to{font-size:16px;}
+  }
+
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    section{padding:22px 0;page-break-inside:avoid;}
+    .idea{background:#fff;color:#000;border-top:2px solid #000;}
+    .idea h2,.idea p,.idea .big,.idea h3{color:#000;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="label">Brand case study — The Man Company</p>
+    <h1>Take care,<br>man.</h1>
+    <p class="deck">A week spent with a brand that makes good products, good content, and no argument for why any of it matters.</p>
+    <p class="byline">Unsolicited strategy note · <strong>Aditi</strong> · Content &amp; Brand Strategy</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="glance">
+    <p class="label">At a glance</p>
+    <div class="glance-grid">
+      <div class="glance-row">
+        <p class="label">The problem</p>
+        <p class="g-text">Ten years in, the work is well made but lightly owned. Cover the logo and almost nothing in it could only have come from The Man Company.</p>
+      </div>
+      <div class="glance-row">
+        <p class="label">The solution</p>
+        <p class="g-text">Stop talking about how a man looks. Start talking about how he's doing.</p>
+      </div>
+      <div class="glance-row">
+        <p class="label">The strategy</p>
+        <p class="g-text">Move the brand from grooming to care. From occasion to routine, from being seen to being alright. Same products, same prices, same shelf — a different reason to reach for it.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">01</span><h2>Where this started</h2></div>
+    <p class="lead">I spent about a week going through The Man Company's website, their Instagram, their product pages, even the copy on the back of the packs.</p>
+    <p>And I want to be honest about something first: this is a well-built brand. The products are good, the pricing is fair, the design is clean, and they've been doing this for ten years in a market that eats new brands for breakfast. None of that is easy.</p>
+    <p>But when I put my phone down, I realised I couldn't remember anything the brand had said to me. I remembered the products perfectly well. I just couldn't remember the brand.</p>
+    <p class="callout">If someone asked me what The Man Company believes in, I'd only be able to tell them what it sells.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">02</span><h2>The observation</h2></div>
+    <p>So I went back and looked more carefully, to check whether I was being unfair.</p>
+    <p>Almost every post is a product doing something, and that's meaningful. An ingredient, a benefit, a kit, an offer.</p>
+    <p>The captions explain the formula. Charcoal for oil, coffee for dullness, argan for frizz.</p>
+    <p>The men in the photos are always finished. Showered, dressed, ready to leave. Never in the middle of anything.</p>
+    <p>None of it is bad work. It's all quite well made.</p>
+    <p>But across a whole week, I couldn't find one line that was about the man rather than the bottle.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">03</span><h2>The problem</h2></div>
+
+    <h3>The symptom — what you can see</h3>
+    <p>The content looks like men's grooming content. The website sounds like a men's grooming website. The products do exactly what grooming products are meant to do.</p>
+    <p>Everything is correct. Very little is distinct.</p>
+    <p>If you covered the logo and put Beardo's on instead, almost nothing would feel wrong.</p>
+
+    <h3>The diagnosis — what's actually wrong</h3>
+    <p>I think the brand is speaking category language instead of brand language.</p>
+    <p>Category language is what anyone in men's grooming could say. Bold. Confident. Premium. Natural. For the modern man. It's safe, it's true, and it belongs to nobody.</p>
+    <p>Brand language is the thing only one brand can say. The sentence that would look stolen in someone else's mouth.</p>
+    <p class="callout">The Man Company is fluent in the first and has gone quiet on the second.</p>
+
+    <h3>The cost — why this is a business problem, not a taste problem</h3>
+    <p>As per my rough record, in FY25 revenue fell 16% to ₹154 crore from ₹183 crore the year before. In the same year, advertising became the company's single largest expense, rising from ₹14 crore to ₹43 crore. FY26 recovered only to ₹161 crore, while losses widened by nearly half.</p>
+    <p>So what did it cost the brand? Three times the advertising money, and sixteen percent less revenue.</p>
+    <p>When more spending buys less growth, the problem usually isn't where the ads are running. It's what they're saying.</p>
+    <p>And it isn't the category either. India's men's grooming market was around ₹20,500 crore in 2024 and is still growing faster than personal care overall.</p>
+    <p>The category is growing. The brand isn't. That gap is what I've covered in this case study.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">04</span><h2>The brand sharpness test</h2></div>
+    <p>Instead of arguing about whether a brand is distinctive, I find it easier to just check.</p>
+    <p>These are five questions I ask about any brand's communication. None of them needs data or a research budget. I just needed their Instagram and about an hour.</p>
+
+    <figure>
+      <svg viewBox="0 0 560 150" role="img" aria-label="Four identical grooming bottles with their labels blanked out">
+        <g fill="none" stroke="#1F4436" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+          <g transform="translate(28,18)">
+            <path d="M28 0h16v14c14 6 22 17 22 31v67c0 6-4 10-10 10H16c-6 0-10-4-10-10V45c0-14 8-25 22-31z"/>
+            <rect x="18" y="58" width="42" height="30"/>
+          </g>
+          <g transform="translate(160,18)">
+            <path d="M28 0h16v14c14 6 22 17 22 31v67c0 6-4 10-10 10H16c-6 0-10-4-10-10V45c0-14 8-25 22-31z"/>
+            <rect x="18" y="58" width="42" height="30"/>
+          </g>
+          <g transform="translate(292,18)">
+            <path d="M28 0h16v14c14 6 22 17 22 31v67c0 6-4 10-10 10H16c-6 0-10-4-10-10V45c0-14 8-25 22-31z"/>
+            <rect x="18" y="58" width="42" height="30"/>
+          </g>
+          <g transform="translate(424,18)">
+            <path d="M28 0h16v14c14 6 22 17 22 31v67c0 6-4 10-10 10H16c-6 0-10-4-10-10V45c0-14 8-25 22-31z"/>
+            <rect x="18" y="58" width="42" height="30"/>
+          </g>
+        </g>
+      </svg>
+      <figcaption>One of these is The Man Company. One is Beardo. One is Ustraa. One is Bombay Shaving Company.</figcaption>
+    </figure>
+
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr><th>Test</th><th>What I did</th><th>What I found</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-name">The Swap Test</td>
+            <td>Covered their logo on ten posts and put Beardo's on instead.</td>
+            <td>Honestly, nothing changed. The posts looked just as at home under someone else's name.</td>
+          </tr>
+          <tr>
+            <td class="t-name">The Subtract Test</td>
+            <td>Took out every mention of the product and read what was left.</td>
+            <td>Not much was left. Take the bottle out of the sentence and there's nowhere for it to go.</td>
+          </tr>
+          <tr>
+            <td class="t-name">The Sentence Test</td>
+            <td>Tried to finish “The Man Company is the brand that ______” without naming a product.</td>
+            <td>The best I could do was “sells good grooming products for men.” Which is true. But so would Beardo and Ustraa be.</td>
+          </tr>
+          <tr>
+            <td class="t-name">The Screenshot Test</td>
+            <td>Made a grid of their posts mixed with Beardo, Ustraa and Bombay Shaving Company, with all the logos taken off.</td>
+            <td>I couldn't tell which ones were theirs. And I'd been staring at their feed all week.</td>
+          </tr>
+          <tr>
+            <td class="t-name">The Overheard Test</td>
+            <td>Looked for one line a man might actually repeat to a friend.</td>
+            <td>Couldn't find one. The writing is good, it's just written to be looked at, not said.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">05</span><h2>My findings</h2></div>
+    <p>Four of the five tests came back the same way, and it took me a while to work out how to say it politely.</p>
+    <p class="callout">The work is good. It just isn't theirs.</p>
+    <p>That's the summary. Every post is well shot, well written and well made. But cover the logo and the post keeps working perfectly fine — which tells you the logo wasn't carrying much weight in the first place.</p>
+    <p>I don't think this is a talent problem. You don't survive ten years in men's grooming in India by being bad at this, and the craft is genuinely there on every single post. It reads more like a slow drift. That happens when a brand gets busy, and product marketing starts doing the job brand marketing used to do.</p>
+    <p>The strange part is that they clearly know how to do the other thing. Their own marketing lead once described their first Ayushmann film as a manifesto with no product mention in it at all. That's a brave call for a grooming brand, and it worked. It worked marvellously.</p>
+    <p>So the ability hasn't gone anywhere. Somewhere along the way, the conviction just got quieter.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">06</span><h2>Why the product can't be the answer anymore</h2></div>
+    <p>Ten years ago, just having a beard oil was enough to be different. Most men had never been sold to properly, and a brand that spoke to them at all stood out.</p>
+    <p>That's gone now. Every brand in this category has roughly the same ingredients, the same price band, the same shelf on the same delivery app, and the same ten-minute delivery. If The Man Company launched a great new face wash tomorrow, someone would have a version of it by the end of the quarter.</p>
+    <p>Which means the product can't be the thing that separates them anymore. It's the easiest part to copy.</p>
+    <p class="callout">The only thing nobody can copy is what a brand actually has to say.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">07</span><h2>The contradiction</h2></div>
+    <p>So I stopped looking at the brand and started thinking about the man it's talking to, as their strategist would.</p>
+    <p>A man will drive across the city at 11pm because a friend asked him to. He'll spend on his family without checking the price. He'll work through a fever and tell everyone he's fine.</p>
+    <p>And then he'll pick up a face wash, look at the price, and put it back. Because it feels like too much for himself.</p>
+    <p class="callout">Care is something men are very good at giving. It's just not something most of them are used to taking.</p>
+    <p>And I don't think that's because they don't want it. I think it's because they don't have a comfortable way to say it. “I'm looking after my skin” sounds soft in a man's own head, so the whole thing gets skipped — not because it doesn't matter, but because the sentence is awkward.</p>
+    <p>There's research behind this too. A study of 403 urban Indian men aged 18 to 29 found that the stronger a man's ideas about masculinity, the more shame he attached to asking for help, and the less likely he was to actually ask.</p>
+    <p>So the barrier isn't the behaviour. It's the vocabulary.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">08</span><h2>The missed opportunity</h2></div>
+    <p>The Man Company built its whole identity on one word. Gentleman.</p>
+    <p>It's a good word. But it's a verdict. Someone else has to decide you are one. It's entirely about how a man is seen by other people — the same thing the category has been doing from the start.</p>
+    <p>So for ten years, the brand has been talking to men about being noticed. Looking sharp. Being the good guy in the room. Being recognised.</p>
+
+    <figure>
+      <svg viewBox="0 0 560 190" role="img" aria-label="Line drawing of a bathroom mirror, a shelf and a single bottle">
+        <g fill="none" stroke="#1F4436" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="212" y="14" width="136" height="104" rx="68"/>
+          <path d="M96 140h368"/>
+          <path d="M258 140v-10c0-3 2-5 5-5h6v-6h10v6h6c3 0 5 2 5 5v10"/>
+          <path d="M150 140v-22c0-6 4-10 9-12v-6h10v6c5 2 9 6 9 12v22"/>
+        </g>
+        <text x="280" y="176" text-anchor="middle" font-family="Archivo, sans-serif" font-size="12" letter-spacing="2.4" fill="#1F4436">FOUR MINUTES. NOBODY WATCHING.</text>
+      </svg>
+      <figcaption>The only part of a man's day the category has never spoken to.</figcaption>
+    </figure>
+
+    <p>Nobody in this category has said a single thing about the four minutes in the morning when nobody's watching at all. When there's no room, no audience and no verdict. Just a man and a bathroom mirror.</p>
+    <p>That's the part of a man's life the whole category has walked straight past.</p>
+    <p class="callout">And it's the part he's actually in when he uses the product.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-head"><span class="num">09</span><h2>The strategic shift</h2></div>
+    <p>Everything up to here has been diagnosis. This is the part I'd actually change.</p>
+    <p>And I want to be clear about the size of it, because it isn't a rebrand. No new logo, no new packaging, no new product line, no new agency. The only thing that changes is what the brand is about.</p>
+    <p>Right now, The Man Company is a brand about grooming. Grooming is what a man does before he leaves the house. It's for other people. It has an audience.</p>
+    <p>I'd make it a brand about care. Care is what a man does whether or not anyone sees it. No audience. Just upkeep.</p>
+    <p>That's a one-word change, and it moves the entire brand.</p>
+
+    <div class="t-wrap">
+      <table class="shift">
+        <thead>
+          <tr><th>What the brand says today</th><th>What I'd have it say</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="from">Grooming</td><td class="to">Care</td></tr>
+          <tr><td class="from">Talking about the product</td><td class="to">Talking about the man</td></tr>
+          <tr><td class="from">How a man is seen</td><td class="to">How a man is doing</td></tr>
+          <tr><td class="from">A verdict others give you</td><td class="to">A thing you give yourself</td></tr>
+          <tr><td class="from">A look</td><td class="to">A habit</td></tr>
+          <tr><td class="from">Transformation</td><td class="to">Maintenance</td></tr>
+          <tr><td class="from">Occasion-led</td><td class="to">Routine-led</td></tr>
+          <tr><td class="from">Bring out the gentleman in you</td><td class="to">Take care, man</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Why this shift and not another one</h3>
+    <p>Any strategist can propose a shift. Here's why I'd defend this one.</p>
+    <p><strong>It's the only ground nobody's standing on.</strong> Every brand in this category sells how a man looks. Beardo, Ustraa, Bombay Shaving Company and The Man Company are all fighting over the same six feet of territory. “How a man is doing” is empty ground, and it's empty because it's harder — which is exactly why it's worth taking.</p>
+    <p><strong>It matches what men actually feel, not what ads say they feel.</strong> A man will drive across the city for a friend and then put a face wash back on the shelf because it feels like too much for himself. Every brand is telling him to want more. Nobody is telling him it's alright to have this.</p>
+    <p><strong>It fits the brand they already are.</strong> Their own marketing lead has said their campaigns focus on brand philosophy over product, and that their first Ayushmann film was a manifesto with no product mention at all. This isn't asking them to become a different company. It's asking them to go back to being the one they were proud of.</p>
+    <p><strong>It's the part a competitor can't copy.</strong> Anyone can match a formula in a quarter. Nobody can take a point of view off you.</p>
+  </section>
+
+</div>
+
+<section class="idea reveal">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">10</span><h2>The big idea</h2></div>
+    <p>I don't work at The Man Company. I just spent a week looking closely at a brand I think is one idea away from being unforgettable. Here's what I'd propose.</p>
+    <p class="big">Take care, man.</p>
+    <h3>Three reasons I'd fight for this line</h3>
+    <p><strong>Men already say it.</strong> It's how they end a call, a message, a goodbye at the gate. The brand isn't teaching men a new sentence — it's picking up one they've been saying for years without meaning it.</p>
+    <p><strong>It gives permission without asking for it.</strong> No softness, no lecture, no telling a man it's okay to care about himself. Just the thing his friend says to him anyway.</p>
+    <p><strong>It works both ways.</strong> It's something the brand says to a man, and something a man says to another man. “Gentleman” was a standard to live up to. “Take care, man” is what you say to someone you actually like.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="signoff reveal">
+    <div class="rule"></div>
+    <p>This is an independent case study, written without any brief or access to internal data. Everything here comes from public communication, published financials and a week of paying close attention.</p>
+    <p class="name">Aditi<span>Content &amp; Brand Strategy · [email] · [portfolio]</span></p>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
